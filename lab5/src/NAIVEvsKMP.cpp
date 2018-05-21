@@ -27,7 +27,6 @@ int main(){
     int counter=0;
     for(int i=0; i<3;i++){
         for(int j=0;j<200;j++){
-            vector<int> pi=preKMP(temps[j+i*200]);
             int count1=0,count2=0;
             vector<int> index1=KMP(texts[i],temps[j+i*2],count1);
             vector<int> index2=naive(texts[i],temps[j+i*200],count2);
