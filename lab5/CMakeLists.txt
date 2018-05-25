@@ -10,6 +10,7 @@ set(CMAKE_CXX_FLAGS "-Wall -std=c++11")
 add_executable (kmp ./src/kmp.cpp)
 add_executable (shift ./src/shift.cpp)
 add_executable (NAIVEvsKMP ./src/NAIVEvsKMP.cpp)
+add_executable(generate_random_str src/rand.cpp)
 
 
 target_link_libraries(kmp func)
