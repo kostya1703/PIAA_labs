@@ -2,9 +2,9 @@
 
 vector<Bohr> bohr;
 
-Bohr makeBohr(int p, char c){ //создание новой вершины и инициализации бора
+Bohr makeBohr(int p, char c){ //Функции создания новой вершины и инициализации бора
     Bohr b;
-    b.parent = p; 
+    b.parent = p; //передаем номер отца и символ на ребре в бор
     b.symb = c;
     b.flag = false;
     b.nextV[c]=b.auto_move[c]=-1;
@@ -18,7 +18,7 @@ void initBohr(){
     bohr.push_back(makeBohr(0,'$'));
 }
 
-void addstrBohr(const string& s, vector<string>& pattern){ // добавление строки-образца в бор
+void addstrBohr(const string& s, vector<string>& pattern){ //Процедура добавление строки-образца в бор
     int num = 0;
     for (size_t i = 0; i < s.length(); ++i){
         char ch = s[i];
@@ -68,7 +68,7 @@ int get_Suff_flink(int b){
     return bohr[b].suff_flink;
 }
 
-void stand_check(int b,int i,const vector<string>& pattern, map<int,vector<int>>& answ){
+void stand_check(int b,int i,const vector<string>& pattern, map<int,vector<int>>& answrs){
     for(int j = b; j != 0; j = get_Suff_flink(j)) {
         if (bohr[j].flag){
             answ[i - pattern[bohr[j].N_pattern[0]].size() + 1].push_back(bohr[j].N_pattern[0] + 1);
@@ -79,11 +79,11 @@ void stand_check(int b,int i,const vector<string>& pattern, map<int,vector<int>>
 
 
 
-void stand_find_all_pos(const string& s,const vector<string>& pattern, map<int,vector<int>>& answ){
+void stand_find_all_pos(const string& s,const vector<string>& pattern, map<int,vector<int>>& answrs){
     int j = 0;
     for(size_t i = 0; i < s.size(); i++) {
         j = getAuto_move(j, s[i]);
-        stand_check(j, i+1, pattern, answ);
+        stand_check(j, i+1, pattern, answrs);
 
     }
 }
@@ -103,12 +103,12 @@ vector<int> split(stringstream& str_pat, char razd, vector<string>& pattern){
     }
     return spliter;
 }
-void joker_check(int b,int i,vector<int>& count, const vector<int>& lenght){
+void joker_check(int b,int i,vector<int>& count, const vector<int>& spliter){
     for(int j = b; j != 0; j = get_Suff_flink(j)){
         if (bohr[j].flag){
             for(const auto& it: bohr[j].N_pattern){
-                if((size_t)(i-lenght[it])<count.size()){
-                    count[i-lenght[it]]++;
+                if((size_t)(i-spliter[it])<count.size()){
+                    count[i-spliter[it]]++;
                 }
             }
         }
