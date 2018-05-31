@@ -6,9 +6,9 @@ int main(){
     char jok;
     cin>>text>>pat>>jok;
     stringstream str_pat(pat);
-    vector<string> pattern;
+    vector<string> pattern; //вектор для частей шаблона
     initBohr();
-    vector<int> spliter = split(str_pat, jok, pattern);
+    vector<int> spliter = split(str_pat, jok, pattern);//места, где части шаблона заканчиваются в самом шаблоне
     vector<int> count(text.size(),0);
     joker_find_all_pos(text, count, spliter);
 
