@@ -2,14 +2,14 @@
 
 
 int main(){
-
-    string text, pat;
+    setlocale(LC_ALL, "");
+    wstring text, pat;
     int n;
-    cin>>text>>n;
-    vector<string> pattern;
+    wcin>>text>>n;
+    vector<wstring> pattern;
     initBohr();
     for(int i=0; i<n; i++){
-        cin>>pat;
+        wcin>>pat;
         addstrBohr(pat, pattern);
     }
     map<int,vector<int>> answrs;
