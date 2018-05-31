@@ -124,7 +124,7 @@ void joker_find_all_pos(const string& s,vector<int>& count, const vector<int>& s
 }
 
 
-vector<int> getPos(const vector<int>& count, int stopper, int pattern_size){
+vector<int> getPos(const vector<int>& count, int endd, int pattern_size){
     vector<int> pos;
     for(int i=0;i<stopper;i++){
         if(count[i]==pattern_size)
