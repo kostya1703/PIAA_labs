@@ -6,11 +6,11 @@ using ::testing::Values;
 
 
 
-map<int, vector<int>> Standart(const string& text,const vector<string>& pattern) {
+map<int, vector<int>> Standart(const wstring& text,const vector<wstring>& pattern) {
     initBohr();
     map<int, vector<int>> answrs;
     answrs.clear();
-    vector<string> patterns;
+    vector<wstring> patterns;
     for(const auto& patt : pattern) {
        addstrBohr(patt, patterns);
    }
@@ -23,8 +23,8 @@ map<int, vector<int>> Standart(const string& text,const vector<string>& pattern)
 
 struct Stand_Test
 {
-    string text;
-	vector<string> pattern;
+    wstring text;
+	vector<wstring> pattern;
 	map<int, vector<int>> expected_answ;
 };
 
@@ -42,11 +42,14 @@ protected:
 
 INSTANTIATE_TEST_CASE_P(StandartInstantiate, Stand_Fixture,
 Values(
-    Stand_Test{"CCCA", {"CC"}, {{1,{1}},{2,{1}}}},
-    Stand_Test{"CCCA", {"CC", "C","CCC"}, {{1,{1,2,3}},{2,{1,2}},{3,{2}}}},
-    Stand_Test{"TGHGRTH", {"GR", "TGHG", "RTH"}, {{1,{2}},{4,{1}},{5,{3}}}},
-    Stand_Test{"AAAAAAAA", {"R"}, {}}
+    Stand_Test{L"CCCA", {L"CC"}, {{1,{1}},{2,{1}}}},
+    Stand_Test{L"CCCA", {L"CC", L"C",L"CCC"}, {{1,{1,2,3}},{2,{1,2}},{3,{2}}}},
+    Stand_Test{L"TGHGRTH", {L"GR", L"TGHG", L"RTH"}, {{1,{2}},{4,{1}},{5,{3}}}},
+    Stand_Test{L"AAAAAAAA", {L"R"}, {}},
+    Stand_Test{L"CАCАS", {L"А"}, {{2,{1}},{4,{1}}}},
+	Stand_Test{L"АА", {L"А"}, {{1,{1}},{2,{1}}}}
 ));
+
 
 TEST_P(Stand_Fixture, Stand_Test) {
     ASSERT_EQ(GetParam().expected_answ, answrs);
@@ -55,21 +58,21 @@ TEST_P(Stand_Fixture, Stand_Test) {
 
 
 
-vector<int> Joker(const string& text, const string& pat, char razd) {
+vector<int> Joker(const wstring& text, const wstring& pat, char jok) {
     initBohr();
-    stringstream str_pat(pat);
+    wstringstream str_pat(pat);
     vector<int> count(text.size(),0);
-    vector<string> pattern;
-    vector<int> spliter = split(str_pat, razd, pattern);
+    vector<wstring> pattern;
+    vector<int> spliter = split(str_pat, jok, pattern);
     joker_find_all_pos(text, count, spliter);
     return getPos(count,text.size()-pat.size()+1,pattern.size());
 }
 
 struct Joker_Test
 {
-    string text;
-	string pat;
-	char jok;
+    wstring text;
+	wstring pat;
+	wchar_t jok;
 	vector<int> expected_poss;
 };
 
@@ -85,15 +88,15 @@ protected:
 	vector<int> poss;
 };
 
-INSTANTIATE_TEST_CASE_P(DjokerInstantiate, Joker_Fixture,
+INSTANTIATE_TEST_CASE_P(JokerInstantiate, Joker_Fixture,
 Values(
-	Joker_Test{"ACT", "A$", '$', {1}},
-	Joker_Test{"CCC", "C$", '$', {1, 2}},
-	Joker_Test{"BBBBB", "B***", '*', {1, 2}},
-	Joker_Test{"TTTTTT", "!!!T", '!', {1, 2, 3}},
-	Joker_Test{"SSSSS", "**S**", '*', {1}},
-	Joker_Test{"TTTT", "T#T", '#', {1, 2}}
-
+	Joker_Test{L"ACT", L"A$", L'$', {1}},
+	Joker_Test{L"CCC", L"C$", L'$', {1, 2}},
+	Joker_Test{L"BBBBB", L"B***", L'*', {1, 2}},
+	Joker_Test{L"TTTTTT", L"!!!T", L'!', {1, 2, 3}},
+	Joker_Test{L"SSSSS", L"**S**", L'*', {1}},
+	Joker_Test{L"TTTT", L"T#T", L'#', {1, 2}},
+	Joker_Test{L"АААА", L"А*А", L'*', {1, 2}}
 ));
 
 
@@ -103,6 +106,7 @@ TEST_P(Joker_Fixture, Joker_Test) {
 
 
 int main(int argc, char **argv) {
+    setlocale(LC_ALL, "");
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
