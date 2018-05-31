@@ -30,9 +30,9 @@ int getAuto_move(int v, char ch);
 int get_Suff_link(int v);
 int get_Suff_flink(int v);
 void stand_check(int v,int i,const vector<string>& pattern, map<int,vector<int>>& answ);
-void joker_check(int v,int i,vector<int>& count, const vector<int>& splitter);
+void joker_check(int v,int i,vector<int>& count, const vector<int>& spliter);
 void stand_find_all_pos(const string& s,const vector<string>& pattern, map<int,vector<int>>& answ);
-void joker_find_all_pos(const string& s,vector<int>& count, const vector<int>& splitter);
+void joker_find_all_pos(const string& s,vector<int>& count, const vector<int>& spliter);
 vector<int> split(stringstream& str_pat, char razd, vector<string>& pattern);
 vector<int> getPos(const vector<int>& count, int stopper, int pattern_size);
 
