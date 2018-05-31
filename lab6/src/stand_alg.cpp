@@ -12,10 +12,10 @@ int main(){
         cin>>pat;
         addstrBohr(pat, pattern);
     }
-    map<int,vector<int>> answ;
-    stand_find_all_pos(text, pattern, answ);
+    map<int,vector<int>> answrs;
+    stand_find_all_pos(text, pattern, answrs);
 
-    for(auto& it: answ){
+    for(auto& it: answrs){
         sort(it.second.begin(),it.second.end());
         for(const auto& it_sec: it.second)
         cout<<it.first<<" "<<it_sec<<"\n";
