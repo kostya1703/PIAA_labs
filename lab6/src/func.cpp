@@ -71,7 +71,7 @@ int get_Suff_flink(int b){
 void stand_check(int b,int i,const vector<string>& pattern, map<int,vector<int>>& answrs){
     for(int j = b; j != 0; j = get_Suff_flink(j)) {
         if (bohr[j].flag){
-            answ[i - pattern[bohr[j].N_pattern[0]].size() + 1].push_back(bohr[j].N_pattern[0] + 1);
+            answrs[i - pattern[bohr[j].N_pattern[0]].size() + 1].push_back(bohr[j].N_pattern[0] + 1);
         }
 
     }
@@ -126,7 +126,7 @@ void joker_find_all_pos(const string& s,vector<int>& count, const vector<int>& s
 
 vector<int> getPos(const vector<int>& count, int endd, int pattern_size){
     vector<int> pos;
-    for(int i=0;i<stopper;i++){
+    for(int i=0;i<endd;i++){
         if(count[i]==pattern_size)
             pos.push_back(i+1);
     }
