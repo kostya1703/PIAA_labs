@@ -46,8 +46,8 @@ Values(
     Stand_Test{L"CCCA", {L"CC", L"C",L"CCC"}, {{1,{1,2,3}},{2,{1,2}},{3,{2}}}},
     Stand_Test{L"TGHGRTH", {L"GR", L"TGHG", L"RTH"}, {{1,{2}},{4,{1}},{5,{3}}}},
     Stand_Test{L"AAAAAAAA", {L"R"}, {}},
-    Stand_Test{L"CАCАS", {L"А"}, {{2,{1}},{4,{1}}}},
-	Stand_Test{L"АА", {L"А"}, {{1,{1}},{2,{1}}}}
+    Stand_Test{L"CФCФS", {L"Ф"}, {{2,{1}},{4,{1}}}},
+	Stand_Test{L"ФФ", {L"Ф"}, {{1,{1}},{2,{1}}}}
 ));
 
 
@@ -96,7 +96,7 @@ Values(
 	Joker_Test{L"TTTTTT", L"!!!T", L'!', {1, 2, 3}},
 	Joker_Test{L"SSSSS", L"**S**", L'*', {1}},
 	Joker_Test{L"TTTT", L"T#T", L'#', {1, 2}},
-	Joker_Test{L"АААА", L"А*А", L'*', {1, 2}}
+	Joker_Test{L"ФФФФ", L"Ф*Ф", L'*', {1, 2}}
 ));
 
 
