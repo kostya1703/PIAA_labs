@@ -10,9 +10,9 @@ map<int, vector<int>> Standart(const string& text,const vector<string>& pattern)
     initBohr();
     map<int, vector<int>> answrs;
     answrs.clear();
-    vector<string> dop;
+    vector<string> patterns;
     for(const auto& patt : pattern) {
-       addstrBohr(patt, dop);
+       addstrBohr(patt, patterns);
    }
    stand_find_all_pos(text, pattern, answrs);
    for(auto& it: answrs)
