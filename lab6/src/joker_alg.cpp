@@ -2,11 +2,12 @@
 
 
 int main(){
-    string text, pat;
-    char jok;
-    cin>>text>>pat>>jok;
-    stringstream str_pat(pat);
-    vector<string> pattern; //вектор для частей шаблона
+    setlocale(LC_ALL, "");
+    wstring text, pat;
+    wchar_t jok;
+    wcin>>text>>pat>>jok;
+    wstringstream str_pat(pat);
+    vector<wstring> pattern; //вектор для частей шаблона
     initBohr();
     vector<int> spliter = split(str_pat, jok, pattern);//места, где части шаблона заканчиваются в самом шаблоне
     vector<int> count(text.size(),0);
